@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shop/components/product_item.dart';
 
 import '../data/dummy_data.dart';
 import '../models/product.dart';
@@ -15,17 +16,17 @@ class ProductsOverviewPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Minha loja'),
       ),
-      body: Padding(
+      body: GridView.builder(
         padding: const EdgeInsets.all(10),
-        child: GridView.builder(
-          itemBuilder: (ctx, i) => Text(loadedProducts[i].title),
-          itemCount: loadedProducts.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
+        itemBuilder: (ctx, i) => ProductItem(
+          product: loadedProducts[i],
+        ),
+        itemCount: loadedProducts.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
         ),
       ),
     );
