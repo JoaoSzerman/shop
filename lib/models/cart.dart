@@ -3,7 +3,7 @@ import 'package:shop/models/cart_item.dart';
 import 'package:shop/models/product.dart';
 import 'dart:math';
 
-class Caer with ChangeNotifier {
+class Cart with ChangeNotifier {
   Map<String, CartItem> _items = {};
 
   Map<String, CartItem> get items {
@@ -15,7 +15,7 @@ class Caer with ChangeNotifier {
   }
 
   double get totalAmount {
-    double total = 0.0;
+    double total = 0;
     _items.forEach((key, cartItem) {
       total += cartItem.price * cartItem.quantity;
     });
