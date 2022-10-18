@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/components/app_drawer.dart';
+import 'package:shop/components/product_item.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:shop/utils/app_routes.dart';
 
-import '../components/product_item.dart';
-
-class ProductPage extends StatelessWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class ProductsPage extends StatelessWidget {
+  const ProductsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final ProductList products = Provider.of(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gerenciar Produtos"),
+        title: const Text('Gerenciar Produtos'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.add),
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.product_form);
+              Navigator.of(context).pushNamed(AppRoutes.productForm);
             },
-            icon: Icon(Icons.add),
-          ),
+          )
         ],
       ),
       drawer: const AppDrawer(),
@@ -34,10 +30,8 @@ class ProductPage extends StatelessWidget {
           itemCount: products.itemsCount,
           itemBuilder: (ctx, i) => Column(
             children: [
-              ProductItem(
-                product: products.items[i],
-              ),
-              Divider(),
+              ProductItem(products.items[i]),
+              const Divider(),
             ],
           ),
         ),

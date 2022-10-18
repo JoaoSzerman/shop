@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/models/cart.dart';
 import 'package:shop/models/order_list.dart';
 import 'package:shop/models/product_list.dart';
 import 'package:shop/pages/cart_page.dart';
@@ -9,7 +10,6 @@ import 'package:shop/pages/product_form_page.dart';
 import 'package:shop/pages/product_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
 import 'package:shop/utils/app_routes.dart';
-import 'models/cart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,19 +35,20 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          fontFamily: 'Lato',
-          colorScheme:
-              ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.purple,
             secondary: Colors.deepOrange,
           ),
+          fontFamily: 'Lato',
         ),
+        // home: const ProductsOverviewPage(),
         routes: {
           AppRoutes.home: (ctx) => const ProductsOverviewPage(),
           AppRoutes.productDetail: (ctx) => const ProductDetailPage(),
-          AppRoutes.orders: (ctx) => const OrdersPage(),
           AppRoutes.cart: (ctx) => const CartPage(),
-          AppRoutes.products: (ctx) => const ProductPage(),
-          AppRoutes.product_form: (ctx) => const ProductFormPage(),
+          AppRoutes.orders: (ctx) => const OrdersPage(),
+          AppRoutes.products: (ctx) => const ProductsPage(),
+          AppRoutes.productForm: (ctx) => const ProductFormPage(),
         },
         debugShowCheckedModeBanner: false,
       ),
